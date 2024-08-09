@@ -1,0 +1,62 @@
+<launch>
+  <!-- Environment setup -->
+  <env name="GAZEBO_MODEL_PATH" value="$GAZEBO_MODEL_PATH:$(find ardrone_gazebo)/models"/>
+  <env name="GAZEBO_PLUGIN_PATH" value="$GAZEBO_PLUGIN_PATH:$(find ardrone_gazebo)/plugins"/>
+  <env name="GAZEBO_RESOURCE_PATH" value="$GAZEBO_RESOURCE_PATH:$(find ardrone_gazebo)/meshes"/>
+
+  <!-- Arguments -->
+  <arg name="world_name" default=""/>
+  <arg name="paused" value="false"/>
+  <arg name="verbose" value="true"/>
+  <arg name="gui" value="true"/>
+  <arg name="sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="robot_name" value="ardrone_gazebo"/>
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
+  <arg name="roll" default="0.0"/>
+  <arg name="pitch" default="0.0"/>
+  <arg name="yaw" default="0.0"/>
+
+  <!-- Launch Gazebo with custom world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="verbose" value="$(arg verbose)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+  <!-- Spawn the drone model -->
+  <group ns="ardrone">
+    <node name="$(arg robot_name)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg sdf_robot_file) -sdf 
+            -x $(arg x) 
+            -y $(arg y) 
+            -z $(arg z)  
+            -R $(arg roll) 
+            -P $(arg pitch) 
+            -Y $(arg yaw) 
+            -model $(arg robot_name)"/>
+    
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'"/>
+  </group>
+  <!-- start robot state publisher -->
+   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+     <param name="publish_frequency" type="double" value="50.0" />
+     <param name="tf_prefix" type="string" value="" />
+   </node>
+   
+   <node name="ground_truth_to_tf" pkg="message_to_tf" type="message_to_tf" output="screen">
+     <param name="odometry_topic" value="ground_truth/state" />
+     <param name="frame_id" value="nav" />
+   </node>
+   
+  <!-- Launch AR.Drone driver -->
+  <node name="ardrone_driver" pkg="ardrone_autonomy" type="ardrone_driver" output="screen"/>
+
+  <!-- Launch teleoperation node (optional, for manual control) -->
+  <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard" output="screen"
+        args="cmd_vel:=cmd_vel" launch-prefix="xterm -e"/>
+   <node pkg="tf" type="static_transform_publisher" name="world_to_nav" args="0 0 0 0 0 0 world nav 100" />
+</launch>
+
