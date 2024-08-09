@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <param name="/use_sim_time" value="true"/>
+    <env name="GAZEBO_MODEL_PATH" value="$GAZEBO_MODEL_PATH:$(find ardrone_gazebo)/models"/>
+    <env name="GAZEBO_PLUGIN_PATH" value="$GAZEBO_PLUGIN_PATH:$(find ardrone_gazebo)/plugins"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="$GAZEBO_RESOURCE_PATH:$(find ardrone_gazebo)/meshes"/>
+    <arg name="world_name" default=""/>
+    <arg name="paused" value="false"/>
+    <arg name="verbose" value="true"/>
+    <arg name="gui" value="true"/>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="world_name" value="$(arg world_name)"/>
+        <arg name="verbose" value="$(arg verbose)"/>
+        <arg name="gui" value="$(arg gui)"/>
+    </include>
+    <!-- AR.Drone 1 -->
+    <arg name="ns1" default="ardrone1"/>
+    <arg name="x1" value="5.000000" />
+    <arg name="y1" value="0.000000" />
+    <arg name="z1" default="0.0" />
+    <arg name="yaw1" value="1.570796" />
+    <arg name="sdf_robot_file1" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns1)">
+        <node name="$(arg ns1)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file1) -sdf -x $(arg x1) -y $(arg y1) -z $(arg z1) -Y $(arg yaw1) -model $(arg ns1)"/>
+    </group>
+    <!-- AR.Drone 2 -->
+    <arg name="ns2" default="ardrone2"/>
+    <arg name="x2" value="4.045085" />
+    <arg name="y2" value="2.938926" />
+    <arg name="z2" default="0.0" />
+    <arg name="yaw2" value="2.199115" />
+    <arg name="sdf_robot_file2" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns2)">
+        <node name="$(arg ns2)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file2) -sdf -x $(arg x2) -y $(arg y2) -z $(arg z2) -Y $(arg yaw2) -model $(arg ns2)"/>
+    </group>
+    <!-- AR.Drone 3 -->
+    <arg name="ns3" default="ardrone3"/>
+    <arg name="x3" value="1.545085" />
+    <arg name="y3" value="4.755283" />
+    <arg name="z3" default="0.0" />
+    <arg name="yaw3" value="2.827433" />
+    <arg name="sdf_robot_file3" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns3)">
+        <node name="$(arg ns3)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file3) -sdf -x $(arg x3) -y $(arg y3) -z $(arg z3) -Y $(arg yaw3) -model $(arg ns3)"/>
+    </group>
+    <!-- AR.Drone 4 -->
+    <arg name="ns4" default="ardrone4"/>
+    <arg name="x4" value="-1.545085" />
+    <arg name="y4" value="4.755283" />
+    <arg name="z4" default="0.0" />
+    <arg name="yaw4" value="3.455752" />
+    <arg name="sdf_robot_file4" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns4)">
+        <node name="$(arg ns4)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file4) -sdf -x $(arg x4) -y $(arg y4) -z $(arg z4) -Y $(arg yaw4) -model $(arg ns4)"/>
+    </group>
+    <!-- AR.Drone 5 -->
+    <arg name="ns5" default="ardrone5"/>
+    <arg name="x5" value="-4.045085" />
+    <arg name="y5" value="2.938926" />
+    <arg name="z5" default="0.0" />
+    <arg name="yaw5" value="4.084070" />
+    <arg name="sdf_robot_file5" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns5)">
+        <node name="$(arg ns5)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file5) -sdf -x $(arg x5) -y $(arg y5) -z $(arg z5) -Y $(arg yaw5) -model $(arg ns5)"/>
+    </group>
+    <!-- AR.Drone 6 -->
+    <arg name="ns6" default="ardrone6"/>
+    <arg name="x6" value="-5.000000" />
+    <arg name="y6" value="0.000000" />
+    <arg name="z6" default="0.0" />
+    <arg name="yaw6" value="4.712389" />
+    <arg name="sdf_robot_file6" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns6)">
+        <node name="$(arg ns6)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file6) -sdf -x $(arg x6) -y $(arg y6) -z $(arg z6) -Y $(arg yaw6) -model $(arg ns6)"/>
+    </group>
+    <!-- AR.Drone 7 -->
+    <arg name="ns7" default="ardrone7"/>
+    <arg name="x7" value="-4.045085" />
+    <arg name="y7" value="-2.938926" />
+    <arg name="z7" default="0.0" />
+    <arg name="yaw7" value="5.340708" />
+    <arg name="sdf_robot_file7" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns7)">
+        <node name="$(arg ns7)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file7) -sdf -x $(arg x7) -y $(arg y7) -z $(arg z7) -Y $(arg yaw7) -model $(arg ns7)"/>
+    </group>
+    <!-- AR.Drone 8 -->
+    <arg name="ns8" default="ardrone8"/>
+    <arg name="x8" value="-1.545085" />
+    <arg name="y8" value="-4.755283" />
+    <arg name="z8" default="0.0" />
+    <arg name="yaw8" value="5.969026" />
+    <arg name="sdf_robot_file8" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns8)">
+        <node name="$(arg ns8)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file8) -sdf -x $(arg x8) -y $(arg y8) -z $(arg z8) -Y $(arg yaw8) -model $(arg ns8)"/>
+    </group>
+    <!-- AR.Drone 9 -->
+    <arg name="ns9" default="ardrone9"/>
+    <arg name="x9" value="1.545085" />
+    <arg name="y9" value="-4.755283" />
+    <arg name="z9" default="0.0" />
+    <arg name="yaw9" value="6.597345" />
+    <arg name="sdf_robot_file9" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns9)">
+        <node name="$(arg ns9)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file9) -sdf -x $(arg x9) -y $(arg y9) -z $(arg z9) -Y $(arg yaw9) -model $(arg ns9)"/>
+    </group>
+    <!-- AR.Drone 10 -->
+    <arg name="ns10" default="ardrone10"/>
+    <arg name="x10" value="4.045085" />
+    <arg name="y10" value="-2.938926" />
+    <arg name="z10" default="0.0" />
+    <arg name="yaw10" value="7.225663" />
+    <arg name="sdf_robot_file10" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+    <group ns="$(arg ns10)">
+        <node name="$(arg ns10)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+              args="-file $(arg sdf_robot_file10) -sdf -x $(arg x10) -y $(arg y10) -z $(arg z10) -Y $(arg yaw10) -model $(arg ns10)"/>
+    </group>
+</launch>

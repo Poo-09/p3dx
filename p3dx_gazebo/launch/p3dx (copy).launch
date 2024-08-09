@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <arg name="radius" default="2.0"/>
+    <arg name="yaw_offset" default="0.0"/>
+    <param name="use_sim_time" value="true"/>
+    
+    
+    <!-- Robot 1 -->
+    <arg name="ns1" default="robot1"/>
+    <arg name="x1" value="$(eval cos(0) * arg('radius'))" />
+    <arg name="y1" value="$(eval sin(0) * arg('radius'))" />
+    <arg name="z1" default="0.0" />
+    <arg name="yaw1" value="$(eval pi/2 + arg('yaw_offset'))" />
+    
+    <arg name="include_aruco_marker1" default="true"/>
+            <arg name="robot_model1" default="$(find p3dx_description)/urdf/pioneer3dx_with_marker.xacro"/>            
+    <group ns="$(arg ns1)">
+        <param name="tf_prefix" value="$(arg ns1)_tf" />
+        <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+            <arg name="name" value="$(arg ns1)" />
+            <arg name="x" value="$(arg x1)" />
+            <arg name="y" value="$(arg y1)" />
+            <arg name="z" value="$(arg z1)" />
+            <arg name="yaw" value="$(arg yaw1)" />
+            <arg name="namespace_arg" value="$(arg ns1)" />
+            
+            <arg name="robot_model" value="$(arg robot_model1)"/>
+            
+
+        </include>
+        <node name="aruco_marker_publisher" pkg="aruco_ros" type="single" output="screen">
+            <param name="image_topic" value="/robot1/rgbd_camera/rgbd_camera/image_raw"/>
+            <param name="camera_info_topic" value="/robot1/rgbd_camera/rgbd_camera/camera_info"/>
+            <param name="marker_size" value="0.05"/>
+            <param name="marker_id" value="3"/>
+            
+        </node>
+        <!--<node name="aruco_detector" pkg="p3dx_gazebo" type="aruco_detector.py" output="screen"/> -->
+       
+    </group>
+
+    <!-- Robot 2 -->
+    <arg name="ns2" default="robot2"/>
+    <arg name="x2" value="$(eval cos(pi/2) * arg('radius'))" />
+    <arg name="y2" value="$(eval sin(pi/2) * arg('radius'))" />
+    <arg name="z2" default="0.0" />
+    <arg name="yaw2" value="$(eval pi + arg('yaw_offset'))" />
+    <arg name="robot_model2" default="$(find p3dx_description)/urdf/pioneer3dx.xacro"/>
+    <group ns="$(arg ns2)">
+        <param name="tf_prefix" value="$(arg ns2)_tf" />
+        <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+            <arg name="name" value="$(arg ns2)" />
+            <arg name="x" value="$(arg x2)" />
+            <arg name="y" value="$(arg y2)" />
+            <arg name="z" value="$(arg z2)" />
+            <arg name="yaw" value="$(arg yaw2)" />
+            <arg name="namespace_arg" value="$(arg ns2)" />
+            <arg name="robot_model" value="$(arg robot_model2)"/>
+            
+        </include>
+    </group>
+
+    <!-- Robot 3 -->
+    <arg name="ns3" default="robot3"/>
+    <arg name="x3" value="$(eval cos(pi) * arg('radius'))" />
+    <arg name="y3" value="$(eval sin(pi) * arg('radius'))" />
+    <arg name="z3" default="0.0" />
+    <arg name="yaw3" value="$(eval -pi/2 + arg('yaw_offset'))" />
+    <arg name="robot_model3" default="$(find p3dx_description)/urdf/pioneer3dx.xacro"/>
+    
+
+    <group ns="$(arg ns3)">
+        <param name="tf_prefix" value="$(arg ns3)_tf" />
+        <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+            <arg name="name" value="$(arg ns3)" />
+            <arg name="x" value="$(arg x3)" />
+            <arg name="y" value="$(arg y3)" />
+            <arg name="z" value="$(arg z3)" />
+            <arg name="yaw" value="$(arg yaw3)" />
+            <arg name="namespace_arg" value="$(arg ns3)" />
+            <arg name="robot_model" value="$(arg robot_model3)"/>
+        </include>
+    </group>
+
+    <!-- Robot 4 -->
+    <arg name="ns4" default="robot4"/>
+    <arg name="x4" value="$(eval cos(1.5*3.14) * arg('radius'))" />
+    <arg name="y4" value="$(eval sin(1.5*3.14) * arg('radius'))" />
+    <arg name="z4" default="0.0" />
+    <arg name="yaw4" value="$(eval 0 + arg('yaw_offset'))" />
+    <arg name="robot_model4" default="$(find p3dx_description)/urdf/pioneer3dx.xacro"/>
+    
+
+    <group ns="$(arg ns4)">
+        <param name="tf_prefix" value="$(arg ns4)_tf" />
+        <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+            <arg name="name" value="$(arg ns4)" />
+            <arg name="x" value="$(arg x4)" />
+            <arg name="y" value="$(arg y4)" />
+            <arg name="z" value="$(arg z4)" />
+            <arg name="yaw" value="$(arg yaw4)" />
+            <arg name="namespace_arg" value="$(arg ns4)" />
+            <arg name="robot_model" value="$(arg robot_model4)"/>
+            
+            
+        </include>
+    </group>
+    
+</launch>

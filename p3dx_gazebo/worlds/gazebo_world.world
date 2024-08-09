@@ -1,0 +1,20 @@
+<launch>
+  <env name="GAZEBO_MODEL_PATH" value="$GAZEBO_MODEL_PATH:$(find ardrone_gazebo)/models"/>
+  <env name="GAZEBO_PLUGIN_PATH" value="$GAZEBO_PLUGIN_PATH:$(find ardrone_gazebo)/plugins"/> <!--add custom plugins for drone to gazebo plugin path-->
+  <env name="GAZEBO_RESOURCE_PATH" value="$GAZEBO_RESOURCE_PATH:$(find ardrone_gazebo)/meshes"/>
+  
+  <arg name="world_name" default=""/>
+  <!-- <arg name="world_name" default="$(find sjtu_drone)/worlds/contest.world"/> -->
+  <arg name="paused" value="false"/>
+  <arg name="verbose" value="true"/>
+  <arg name="gui" value="true"/>
+
+  <!-- launch the custom world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="verbose" value="$(arg verbose)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+</launch>
+

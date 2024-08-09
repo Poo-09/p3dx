@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<package>
+  <name>p3dx_gazebo</name>
+  <version>0.1.0</version>
+  <description>
+    The p3dx_gazebo package. This is a first working version.
+  </description>
+  
+  <maintainer email="rafael.berkvens@uantwerpen.be">Rafael Berkvens</maintainer>
+  <license>GPLv3</license>
+  <url>https://github.com/RafBerkvens/ua_ros_p3dx</url>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>gazebo_ros</build_depend>
+  <build_depend>p3dx_control</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>python_qt_binding</build_depend>
+  <build_depend>qtbase5-dev</build_depend>
+  <build_depend>gazebo_ros</build_depend>
+  
+  
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>p3dx_description</build_depend>
+  <run_depend>gazebo_ros</run_depend>
+  <run_depend>p3dx_control</run_depend>
+  <run_depend>p3dx_description</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>python_qt_binding</run_depend>
+  <run_depend>qtbase5-dev</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+   <run_depend>gazebo_ros</run_depend>
+  <export>
+    <gazebo_ros gazebo_media_path="${prefix}/media"/>
+  </export >
+</package>

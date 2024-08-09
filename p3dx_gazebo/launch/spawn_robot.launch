@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="robot_count" default="1"/>
+
+    <!-- Robot 1 -->
+    <group if="$(eval arg('robot_count') >= 1)">
+        <arg name="ns1" default="robot1"/>
+        <arg name="x1" value="$(eval cos(0) * arg('radius'))" />
+        <arg name="y1" value="$(eval sin(0) * arg('radius'))" />
+        <arg name="z1" default="0.0" />
+        <arg name="yaw1" value="$(eval pi/2 + arg('yaw_offset'))" />
+
+        <group ns="$(arg ns1)">
+            <param name="tf_prefix" value="$(arg ns1)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns1)" />
+                <arg name="x" value="$(arg x1)" />
+                <arg name="y" value="$(arg y1)" />
+                <arg name="z" value="$(arg z1)" />
+                <arg name="yaw" value="$(arg yaw1)" />
+                <arg name="namespace_arg" value="$(arg ns1)" />
+            </include>
+        </group>
+    </group>
+
+    <!-- Robot 2 -->
+    <group if="$(eval arg('robot_count') >= 2)">
+        <arg name="ns2" default="robot2"/>
+        <arg name="x2" value="$(eval cos(pi/2) * arg('radius'))" />
+        <arg name="y2" value="$(eval sin(pi/2) * arg('radius'))" />
+        <arg name="z2" default="0.0" />
+        <arg name="yaw2" value="$(eval pi + arg('yaw_offset'))" />
+
+        <group ns="$(arg ns2)">
+            <param name="tf_prefix" value="$(arg ns2)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns2)" />
+                <arg name="x" value="$(arg x2)" />
+                <arg name="y" value="$(arg y2)" />
+                <arg name="z" value="$(arg z2)" />
+                <arg name="yaw" value="$(arg yaw2)" />
+                <arg name="namespace_arg" value="$(arg ns2)" />
+            </include>
+        </group>
+    </group>
+
+   <!-- Robot 3 -->
+    <group if="$(eval arg('robot_count') >= 3)">
+        <arg name="ns3" default="robot3"/>
+        <arg name="x3" value="$(eval cos(pi) * arg('radius'))" />
+        <arg name="y3" value="$(eval sin(pi) * arg('radius'))" />
+        <arg name="z3" default="0.0" />
+        <arg name="yaw3" value="$(eval -pi/2 + arg('yaw_offset'))" />
+        <group ns="$(arg ns3)">
+            <param name="tf_prefix" value="$(arg ns3)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns3)" />
+                <arg name="x" value="$(arg x3)" />
+                <arg name="y" value="$(arg y3)" />
+                <arg name="z" value="$(arg z3)" />
+                <arg name="yaw" value="$(arg yaw3)" />
+                <arg name="namespace_arg" value="$(arg ns3)" />
+            </include>
+        </group>
+    </group>
+
+    <!-- Robot 4 -->
+    <group if="$(eval arg('robot_count') >= 4)">
+        <arg name="ns4" default="robot4"/>
+        <arg name="x4" value="$(eval cos(1.5 * pi) * arg('radius'))" />
+        <arg name="y4" value="$(eval sin(1.5 * pi) * arg('radius'))" />
+        <arg name="z4" default="0.0" />
+        <arg name="yaw4" value="$(eval 0 + arg('yaw_offset'))" />
+        <group ns="$(arg ns4)">
+            <param name="tf_prefix" value="$(arg ns4)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns4)" />
+                <arg name="x" value="$(arg x4)" />
+                <arg name="y" value="$(arg y4)" />
+                <arg name="z" value="$(arg z4)" />
+                <arg name="yaw" value="$(arg yaw4)" />
+                <arg name="namespace_arg" value="$(arg ns4)" />
+            </include>
+        </group>
+    </group>
+
+    <!-- Robot 5 -->
+    <group if="$(eval arg('robot_count') >= 5)">
+        <arg name="ns5" default="robot5"/>
+        <arg name="x5" value="$(eval cos(2 * pi) * arg('radius'))" />
+        <arg name="y5" value="$(eval sin(2 * pi) * arg('radius'))" />
+        <arg name="z5" default="0.0" />
+        <arg name="yaw5" value="$(eval pi/2 + arg('yaw_offset'))" />
+        <group ns="$(arg ns5)">
+            <param name="tf_prefix" value="$(arg ns5)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns5)" />
+                <arg name="x" value="$(arg x5)" />
+                <arg name="y" value="$(arg y5)" />
+                <arg name="z" value="$(arg z5)" />
+                <arg name="yaw" value="$(arg yaw5)" />
+                <arg name="namespace_arg" value="$(arg ns5)" />
+            </include>
+        </group>
+    </group>
+
+    <!-- Robot 6 -->
+    <group if="$(eval arg('robot_count') >= 6)">
+        <arg name="ns6" default="robot6"/>
+        <arg name="x6" value="$(eval cos(2.5 * pi) * arg('radius'))" />
+        <arg name="y6" value="$(eval sin(2.5 * pi) * arg('radius'))" />
+        <arg name="z6" default="0.0" />
+        <arg name="yaw6" value="$(eval pi + arg('yaw_offset'))" />
+        <group ns="$(arg ns6)">
+            <param name="tf_prefix" value="$(arg ns6)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns6)" />
+                <arg name="x" value="$(arg x6)" />
+                <arg name="y" value="$(arg y6)" />
+                <arg name="z" value="$(arg z6)" />
+                <arg name="yaw" value="$(arg yaw6)" />
+                <arg name="namespace_arg" value="$(arg ns6)" />
+            </include>
+        </group>
+    </group>
+
+    <!-- Robot 7 -->
+    <group if="$(eval arg('robot_count') >= 7)">
+        <arg name="ns7" default="robot7"/>
+        <arg name="x7" value="$(eval cos(3 * pi) * arg('radius'))" />
+        <arg name="y7" value="$(eval sin(3 * pi) * arg('radius'))" />
+        <arg name="z7" default="0.0" />
+        <arg name="yaw7" value="$(eval -pi/2 + arg('yaw_offset'))" />
+        <group ns="$(arg ns7)">
+            <param name="tf_prefix" value="$(arg ns7)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns7)" />
+                <arg name="x" value="$(arg x7)" />
+                <arg name="y" value="$(arg y7)" />
+                <arg name="z" value="$(arg z7)" />
+                <arg name="yaw" value="$(arg yaw7)" />
+                <arg name="namespace_arg" value="$(arg ns7)" />
+            </include>
+        </group>
+    </group>
+    
+    <!--Robot 8-->
+    <group if="$(eval arg('robot_count') >= 8)">
+        <arg name="ns8" default="robot8"/>
+        <arg name="x8" value="$(eval cos(3.5 * pi) * arg('radius'))" />
+        <arg name="y8" value="$(eval sin(3 * pi) * arg('radius'))" />
+        <arg name="z8" default="0.0" />
+        <arg name="yaw8" value="$(eval -pi/2 + arg('yaw_offset'))" />
+        <group ns="$(arg ns78">
+            <param name="tf_prefix" value="$(arg ns8)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns8)" />
+                <arg name="x" value="$(arg x8)" />
+                <arg name="y" value="$(arg y8)" />
+                <arg name="z" value="$(arg z8)" />
+                <arg name="yaw" value="$(arg yaw8)" />
+                <arg name="namespace_arg" value="$(arg ns8)" />
+            </include>
+        </group>
+         <!-- Robot 9 -->
+    <group if="$(eval arg('robot_count') >= 9)">
+        <arg name="ns9" default="robot9"/>
+        <arg name="x9" value="$(eval cos(4 * pi) * arg('radius'))" />
+        <arg name="y9" value="$(eval sin(4 * pi) * arg('radius'))" />
+        <arg name="z9" default="0.0" />
+        <arg name="yaw9" value="$(eval pi/2 + arg('yaw_offset'))" />
+        <group ns="$(arg ns9)">
+            <param name="tf_prefix" value="$(arg ns9)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns9)" />
+                <arg name="x" value="$(arg x9)" />
+                <arg name="y" value="$(arg y9)" />
+                <arg name="z" value="$(arg z9)" />
+                <arg name="yaw" value="$(arg yaw9)" />
+                <arg name="namespace_arg" value="$(arg ns9)" />
+            </include>
+        </group>
+    </group>
+    <group if="$(eval arg('robot_count') >= 10)">
+        <arg name="ns10" default="robot10"/>
+        <arg name="x10" value="$(eval cos(4.5 * pi) * arg('radius'))" />
+        <arg name="y10" value="$(eval sin(4.5 * pi) * arg('radius'))" />
+        <arg name="z10" default="0.0" />
+        <arg name="yaw10" value="$(eval pi + arg('yaw_offset'))" />
+        <group ns="$(arg ns10)">
+            <param name="tf_prefix" value="$(arg ns10)_tf" />
+            <include file="$(find p3dx_gazebo)/launch/spawn.launch">
+                <arg name="name" value="$(arg ns10)" />
+                <arg name="x" value="$(arg x10)" />
+                <arg name="y" value="$(arg y10)" />
+                <arg name="z" value="$(arg z10)" />
+                <arg name="yaw" value="$(arg yaw10)" />
+                <arg name="namespace_arg" value="$(arg ns10)" />
+            </include>
+        </group>
+    </group>
+    
+
+</launch>
+
