@@ -8,7 +8,7 @@
             To launch the four robots in gazebo world
             $ roslaunch p3dx_gazebo p3dx.launch
             To run all the four robots in a single circle
-            $ rosrun p3dx_gazebo motion.py
+            $ rosrun p3dx_gazebo move.py
 
 # Task 2: To obtain the 2d plots to visualise the path followed by each robot, i.e., x vs t, y vs t, theta vs t and x vs y. 
             Script file to run to obtain the required plots:
